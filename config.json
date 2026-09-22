@@ -1,0 +1,8 @@
+{
+  "token": "96d83bd1f246fbf648a5b88a509896e743348b12410359cf8f94ca1d1d0767f6",
+  "guildId": "",
+  "statsFile": "./stats.yml",
+  "teamsFile": "./teams-data.yml",
+  "backgroundImage": "../src/main/resources/assets/stats-background.png",
+  "outputDir": "./data/generated-stats"
+}
