@@ -250,7 +250,7 @@ function createStatsSvg(player, teamId, headUri, backgroundMarkup) {
       <rect x="${WIDTH - 64 - HEAD_SIZE}" y="54" width="${HEAD_SIZE}" height="${HEAD_SIZE}" rx="22" ry="22"/>
     </clipPath>
     <style>
-      text { font-family: Arial, Helvetica, sans-serif; letter-spacing: 0; }
+      text { font-family: "DejaVu Sans", Arial, Helvetica, sans-serif; letter-spacing: 0; }
       .muted { fill: #beb5cd; font-weight: 700; }
       .text { fill: #f6f2ff; font-weight: 700; }
     </style>
@@ -391,7 +391,7 @@ function fallbackHeadDataUri(playerName) {
     <rect width="160" height="160" fill="#3a2754"/>
     <circle cx="24" cy="24" r="48" fill="rgba(255,92,200,0.47)"/>
     <circle cx="136" cy="140" r="48" fill="rgba(255,154,47,0.46)"/>
-    <text x="80" y="105" fill="#f6f2ff" font-family="Arial, Helvetica, sans-serif" font-size="68" font-weight="700" text-anchor="middle">${initial}</text>
+    <text x="80" y="105" fill="#f6f2ff" font-family="DejaVu Sans, Arial, Helvetica, sans-serif" font-size="68" font-weight="700" text-anchor="middle">${initial}</text>
   </svg>`;
 
   return `data:image/svg+xml;base64,${Buffer.from(svg).toString("base64")}`;
