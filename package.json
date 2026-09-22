@@ -10,6 +10,7 @@
   "dependencies": {
     "discord.js": "^14.27.0",
     "sharp": "^0.35.4",
+    "text-to-svg": "^3.1.5",
     "yaml": "^2.9.1"
   }
 }

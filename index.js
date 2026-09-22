@@ -8,6 +8,7 @@ import {
   SlashCommandBuilder
 } from "discord.js";
 import sharp from "sharp";
+import TextToSVG from "text-to-svg";
 import YAML from "yaml";
 
 const __filename = fileURLToPath(import.meta.url);
@@ -28,6 +29,7 @@ const TEAM_INFO = {
 };
 
 const PLAYING_TEAMS = ["TEAM_1", "TEAM_2", "TEAM_3", "TEAM_4", "TEAM_5", "TEAM_6"];
+const textToSVG = TextToSVG.loadSync();
 
 const config = loadConfig();
 const slashCommands = [
@@ -125,7 +127,10 @@ if (!config.token) {
   console.error("Token Discord manquant. Configure DISCORD_TOKEN ou discord-bot/config.json.");
   process.exit(1);
 } else {
-  client.login(config.token);
+  client.login(config.token).catch((error) => {
+    console.error("Connexion Discord impossible. Verifie DISCORD_TOKEN.", error);
+    process.exit(1);
+  });
 }
 
 process.on("unhandledRejection", (error) => {
@@ -249,19 +254,14 @@ function createStatsSvg(player, teamId, headUri, backgroundMarkup) {
     <clipPath id="headClip">
       <rect x="${WIDTH - 64 - HEAD_SIZE}" y="54" width="${HEAD_SIZE}" height="${HEAD_SIZE}" rx="22" ry="22"/>
     </clipPath>
-    <style>
-      text { font-family: "DejaVu Sans", Arial, Helvetica, sans-serif; letter-spacing: 0; }
-      .muted { fill: #beb5cd; font-weight: 700; }
-      .text { fill: #f6f2ff; font-weight: 700; }
-    </style>
   </defs>
   ${backgroundMarkup}
   <rect width="${WIDTH}" height="${HEIGHT}" fill="rgba(0,0,0,0.38)"/>
   <rect width="${WIDTH}" height="${HEIGHT}" fill="rgba(18,10,24,0.45)"/>
 
-  <text x="64" y="70" fill="#ff9a2f" font-size="22" font-weight="700">LA FAILLE 2.0</text>
-  <text x="64" y="142" class="text" font-size="${nameFontSize}">${xml(player.name)}</text>
-  <text x="68" y="184" fill="#beb5cd" font-size="24">Statistiques joueur</text>
+  ${svgText("LA FAILLE 2.0", 64, 70, 22, "#ff9a2f")}
+  ${svgText(player.name, 64, 142, nameFontSize, "#f6f2ff")}
+  ${svgText("Statistiques joueur", 68, 184, 24, "#beb5cd")}
   ${teamBadge(68, 204, teamLabel, teamColor)}
 
   <rect x="${WIDTH - 64 - HEAD_SIZE + 10}" y="64" width="${HEAD_SIZE}" height="${HEAD_SIZE}" rx="24" fill="rgba(0,0,0,0.38)"/>
@@ -289,7 +289,7 @@ function teamBadge(x, y, label, color) {
   return `
   <rect x="${x}" y="${y}" width="${width}" height="34" rx="17" fill="rgba(0,0,0,0.35)"/>
   <circle cx="${x + 21}" cy="${y + 17}" r="7" fill="${color}"/>
-  <text x="${x + 40}" y="${y + 24}" class="text" font-size="20">${xml(label)}</text>`;
+  ${svgText(label, x + 40, y + 24, 20, "#f6f2ff")}`;
 }
 
 function metricCard(x, y, width, height, label, rawValue, accent, valueSize = 42) {
@@ -300,8 +300,8 @@ function metricCard(x, y, width, height, label, rawValue, accent, valueSize = 42
   return `
   <rect x="${x}" y="${y}" width="${width}" height="${height}" rx="26" fill="rgba(8,8,14,0.46)" stroke="rgba(255,255,255,0.26)" stroke-width="1.5"/>
   <rect x="${x + 1}" y="${y + 1}" width="${width - 2}" height="${height - 2}" rx="26" fill="none" stroke="${accent}" stroke-opacity="0.5" stroke-width="2"/>
-  <text x="${x + width / 2}" y="${y + 36}" class="muted" font-size="15" text-anchor="middle">${xml(label)}</text>
-  <text x="${x + width / 2}" y="${baseline}" class="text" font-size="${fittedSize}" text-anchor="middle">${xml(value)}</text>`;
+  ${svgText(label, x + width / 2, y + 36, 15, "#beb5cd", "center baseline")}
+  ${svgText(value, x + width / 2, baseline, fittedSize, "#f6f2ff", "center baseline")}`;
 }
 
 function nexusPanel(x, y, width, height, total, maxDamage, nexusDamage) {
@@ -324,8 +324,8 @@ function nexusPanel(x, y, width, height, total, maxDamage, nexusDamage) {
 
   return `
   <rect x="${x}" y="${y}" width="${width}" height="${height}" rx="26" fill="rgba(8,8,14,0.46)" stroke="rgba(255,255,255,0.26)" stroke-width="1.5"/>
-  <text x="${x + 24}" y="${y + 29}" class="muted" font-size="16">DEGATS NEXUS</text>
-  <text x="${x + 24}" y="${y + 61}" class="text" font-size="30">${formatDouble(total)}</text>
+  ${svgText("DEGATS NEXUS", x + 24, y + 29, 16, "#beb5cd")}
+  ${svgText(formatDouble(total), x + 24, y + 61, 30, "#f6f2ff")}
   ${bars}`;
 }
 
@@ -386,12 +386,12 @@ async function fetchImageBuffer(url) {
 }
 
 function fallbackHeadDataUri(playerName) {
-  const initial = xml((playerName || "?").slice(0, 1).toUpperCase());
+  const initial = (playerName || "?").slice(0, 1).toUpperCase();
   const svg = `<svg xmlns="http://www.w3.org/2000/svg" width="160" height="160" viewBox="0 0 160 160">
     <rect width="160" height="160" fill="#3a2754"/>
     <circle cx="24" cy="24" r="48" fill="rgba(255,92,200,0.47)"/>
     <circle cx="136" cy="140" r="48" fill="rgba(255,154,47,0.46)"/>
-    <text x="80" y="105" fill="#f6f2ff" font-family="DejaVu Sans, Arial, Helvetica, sans-serif" font-size="68" font-weight="700" text-anchor="middle">${initial}</text>
+    ${svgText(initial, 80, 105, 68, "#f6f2ff", "center baseline")}
   </svg>`;
 
   return `data:image/svg+xml;base64,${Buffer.from(svg).toString("base64")}`;
@@ -429,18 +429,21 @@ function fitTextSize(text, baseSize, minSize, maxCharsAtBase) {
   return Math.max(minSize, Math.floor(baseSize * (maxCharsAtBase / length)));
 }
 
+function svgText(text, x, y, fontSize, fill, anchor = "left baseline") {
+  return textToSVG.getPath(String(text ?? ""), {
+    x,
+    y,
+    fontSize,
+    anchor,
+    attributes: {
+      fill
+    }
+  });
+}
+
 function sanitizeFileName(name) {
   const sanitized = String(name || "player").replace(/[^a-zA-Z0-9._-]/g, "_");
   return sanitized || "player";
-}
-
-function xml(value) {
-  return String(value ?? "")
-    .replaceAll("&", "&amp;")
-    .replaceAll("<", "&lt;")
-    .replaceAll(">", "&gt;")
-    .replaceAll('"', "&quot;")
-    .replaceAll("'", "&apos;");
 }
 
 function escapeDiscord(value) {
