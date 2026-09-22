@@ -1,0 +1,200 @@
+players:
+  c873aa2c-a55c-4d43-9a44-d9d1d15f795a:
+    name: JulDragonne
+    distance-walked: 30844.225998415186
+    coins-gained: 6113
+    distance-swam: 297.84594193996105
+    blocks-broken: 4068
+    blocks-placed: 5281
+    coins-spent: 5610
+    deaths: 9
+    player-damage: 513.3505733733773
+    kills: 9
+    golden-apples-consumed: 12
+  7981b02b-a283-4147-b7b5-147bd473c606:
+    name: Ninjibey
+    distance-walked: 30866.303428828254
+    coins-gained: 7189
+    blocks-broken: 4671
+    distance-swam: 328.38441549419565
+    blocks-placed: 1538
+    coins-spent: 4975
+    player-damage: 480.1281017800793
+    kills: 10
+    golden-apples-consumed: 11
+    deaths: 4
+    nexus-damage:
+      TEAM_6: 1610.6922974586487
+    tnt-consumed: 6
+  5e6f1759-2ad5-47b4-98d2-787ac6a46b9d:
+    name: _Krims_
+    distance-walked: 33216.79615812061
+    coins-gained: 11881
+    blocks-broken: 3493
+    blocks-placed: 2600
+    distance-swam: 312.6011853587371
+    coins-spent: 11055
+    player-damage: 1137.5693000741303
+    kills: 24
+    tnt-consumed: 55
+    golden-apples-consumed: 12
+    deaths: 5
+    nexus-damage:
+      TEAM_6: 1371.9939841032028
+  f22de29b-4f8d-4d59-92e9-067e3296dd33:
+    name: skytiflo
+    distance-walked: 30690.7096415865
+    coins-gained: 5795
+    blocks-broken: 1734
+    distance-swam: 478.26435645661263
+    blocks-placed: 1726
+    coins-spent: 5482
+    player-damage: 405.3712382391095
+    kills: 5
+    deaths: 5
+    tnt-consumed: 31
+    golden-apples-consumed: 2
+    nexus-damage:
+      TEAM_1: 27.822500228881836
+  32303a85-328d-45f7-882c-bc0b88313447:
+    name: ChatMaleOooow
+    distance-walked: 41999.75907282224
+    coins-gained: 6105
+    blocks-broken: 1058
+    distance-swam: 593.2573542174647
+    blocks-placed: 1511
+    coins-spent: 5458
+    player-damage: 443.84568564221263
+    deaths: 15
+    golden-apples-consumed: 3
+    tnt-consumed: 16
+    kills: 3
+    nexus-damage:
+      TEAM_1: 169.86570405960083
+  ebed961f-d603-409f-b11d-adf3cdd308db:
+    name: OraSaNe
+    distance-walked: 36296.83104218183
+    coins-gained: 4862
+    blocks-broken: 4601
+    distance-swam: 435.3936664450366
+    blocks-placed: 7072
+    coins-spent: 4566
+    deaths: 11
+    player-damage: 495.56693318765235
+    kills: 5
+    golden-apples-consumed: 13
+    tnt-consumed: 1
+  6f98b3f3-38ea-43a7-b113-93395fbaee3f:
+    name: Eallyos
+    distance-walked: 32625.38778907684
+    coins-gained: 5527
+    blocks-broken: 2540
+    distance-swam: 352.0268374278655
+    coins-spent: 805
+    blocks-placed: 509
+    player-damage: 508.58123826671385
+    kills: 6
+    deaths: 8
+    tnt-consumed: 2
+    nexus-damage:
+      TEAM_1: 263.6014269590378
+  3b93ebbe-4084-43a6-9ab3-6e232a81e7fc:
+    name: tardivel3
+    distance-walked: 41494.66912496259
+    coins-gained: 4924
+    blocks-broken: 2955
+    distance-swam: 533.2395008141157
+    coins-spent: 4355
+    blocks-placed: 1085
+    player-damage: 354.020019069314
+    deaths: 10
+    kills: 2
+    tnt-consumed: 27
+    nexus-damage:
+      TEAM_1: 153.0788757801056
+    golden-apples-consumed: 2
+  cd87f7ed-77dc-4763-a76d-572c3a5060bd:
+    name: Totomas15
+    distance-walked: 30005.587454477325
+    coins-gained: 4946
+    distance-swam: 329.4561270671797
+    blocks-broken: 8659
+    blocks-placed: 5794
+    player-damage: 242.78962714970112
+    deaths: 13
+    tnt-consumed: 3
+    coins-spent: 4425
+    golden-apples-consumed: 9
+    kills: 2
+  62a0b7df-be34-4860-a2fc-982631fdb2d1:
+    name: _zupi
+    distance-walked: 31971.270814260784
+    blocks-broken: 731
+    coins-gained: 5979
+    distance-swam: 474.3420068906066
+    blocks-placed: 369
+    coins-spent: 5675
+    player-damage: 654.1821205466986
+    kills: 15
+    deaths: 7
+    tnt-consumed: 24
+    nexus-damage:
+      TEAM_1: 337.3550275564194
+    golden-apples-consumed: 4
+  75728468-76b4-4495-b056-8d84a1a62870:
+    name: Skyzon57740
+    coins-gained: 4078
+    distance-walked: 62413.54629231749
+    blocks-placed: 1
+    blocks-broken: 5
+    distance-swam: 59.99011074615393
+    player-damage: 9.174331396818161
+    kills: 1
+    deaths: 1
+  55bb77fc-57db-4fa3-98c4-7ae72e0de3b0:
+    name: WarringtonShon
+    coins-gained: 4046
+    distance-walked: 702.755251150851
+    deaths: 4
+    golden-apples-consumed: 1
+  6af3ba29-9e68-4505-afe3-6024dc97c5c5:
+    name: mohamany13
+    coins-gained: 3394
+    distance-walked: 29260.868605843436
+    blocks-broken: 759
+    distance-swam: 227.08734864303239
+    blocks-placed: 4912
+    coins-spent: 1000
+    player-damage: 99.2701756209135
+    kills: 1
+    tnt-consumed: 2
+    nexus-damage:
+      TEAM_1: 245.7764654159546
+    deaths: 6
+  b0897468-961a-4e12-9a91-8d627b7b1c60:
+    name: ATSP_JojoetJeje
+    coins-gained: 8284
+    distance-walked: 51279.81686846551
+    blocks-broken: 1001
+    blocks-placed: 3698
+    distance-swam: 344.05893143285806
+    coins-spent: 6649
+    player-damage: 618.9804897354841
+    tnt-consumed: 39
+    kills: 11
+    golden-apples-consumed: 12
+    deaths: 4
+    nexus-damage:
+      TEAM_6: 1017.3137184381485
+  5e15ae1b-6d89-441a-b48e-3ecc94f1d6e8:
+    name: OscorpIsBack
+    deaths: 2
+    coins-gained: 1025
+    distance-walked: 7780.3745763012275
+    blocks-broken: 7
+    distance-swam: 5.586819994618302
+    blocks-placed: 21
+    tnt-consumed: 21
+    player-damage: 93.86125694587827
+    golden-apples-consumed: 3
+    kills: 2
