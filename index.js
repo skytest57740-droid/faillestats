@@ -233,9 +233,13 @@ async function createBackgroundMarkup() {
   const backgroundPath = findBackgroundImage();
   if (!backgroundPath) {
     console.warn("stats-background.png introuvable. Image generee avec un fond uni.");
+    console.warn(`Dossier courant Railway: ${process.cwd()}`);
+    console.warn(`Dossier du script: ${__dirname}`);
+    console.warn(`LAFAILLE_STATS_BACKGROUND: ${process.env.LAFAILLE_STATS_BACKGROUND || "(vide)"}`);
     return `<rect width="${WIDTH}" height="${HEIGHT}" fill="#121218"/>`;
   }
 
+  console.log(`Background stats charge: ${backgroundPath}`);
   const backgroundUri = fileToDataUri(backgroundPath);
   return `<image href="${backgroundUri}" width="${WIDTH}" height="${HEIGHT}" preserveAspectRatio="xMidYMid slice"/>`;
 }
