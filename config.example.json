@@ -1,0 +1,8 @@
+{
+  "token": "TON_TOKEN_DISCORD",
+  "guildId": "ID_DE_TON_SERVEUR_DISCORD",
+  "statsFile": "./stats.yml",
+  "teamsFile": "./teams-data.yml",
+  "backgroundImage": "./stats-background.png",
+  "outputDir": "./data/generated-stats"
+}

@@ -150,9 +150,7 @@ function loadConfig() {
     guildId: process.env.DISCORD_GUILD_ID || fileConfig.guildId || "",
     statsFile: resolveConfiguredPath(process.env.LAFAILLE_STATS_FILE || fileConfig.statsFile || "./stats.yml"),
     teamsFile: resolveConfiguredPath(process.env.LAFAILLE_TEAMS_FILE || fileConfig.teamsFile || "./teams-data.yml"),
-    backgroundImage: resolveConfiguredPath(
-      process.env.LAFAILLE_STATS_BACKGROUND || fileConfig.backgroundImage || "../src/main/resources/assets/stats-background.png"
-    ),
+    backgroundImage: resolveConfiguredPath(process.env.LAFAILLE_STATS_BACKGROUND || fileConfig.backgroundImage || ""),
     outputDir: resolveConfiguredPath(process.env.LAFAILLE_OUTPUT_DIR || fileConfig.outputDir || "./data/generated-stats")
   };
 }
@@ -232,12 +230,29 @@ async function generateStatsImage(player, teamId) {
 }
 
 async function createBackgroundMarkup() {
-  if (!config.backgroundImage || !fs.existsSync(config.backgroundImage)) {
+  const backgroundPath = findBackgroundImage();
+  if (!backgroundPath) {
+    console.warn("stats-background.png introuvable. Image generee avec un fond uni.");
     return `<rect width="${WIDTH}" height="${HEIGHT}" fill="#121218"/>`;
   }
 
-  const backgroundUri = fileToDataUri(config.backgroundImage);
+  const backgroundUri = fileToDataUri(backgroundPath);
   return `<image href="${backgroundUri}" width="${WIDTH}" height="${HEIGHT}" preserveAspectRatio="xMidYMid slice"/>`;
+}
+
+function findBackgroundImage() {
+  const candidates = [
+    config.backgroundImage,
+    path.resolve(__dirname, "stats-background.png"),
+    path.resolve(__dirname, "assets", "stats-background.png"),
+    path.resolve(__dirname, "src", "main", "resources", "assets", "stats-background.png"),
+    path.resolve(__dirname, "..", "src", "main", "resources", "assets", "stats-background.png"),
+    path.resolve(process.cwd(), "stats-background.png"),
+    path.resolve(process.cwd(), "assets", "stats-background.png"),
+    path.resolve(process.cwd(), "src", "main", "resources", "assets", "stats-background.png")
+  ].filter(Boolean);
+
+  return candidates.find((candidate) => fs.existsSync(candidate)) || null;
 }
 
 function createStatsSvg(player, teamId, headUri, backgroundMarkup) {
